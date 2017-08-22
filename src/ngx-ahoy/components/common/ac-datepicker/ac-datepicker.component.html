@@ -1,0 +1,10 @@
+<div class="input-group" [class.has-error]="isRequired && !selectedDate" #container="bs-dropdown" [dropup]="showOnTop" dropdown
+    container="body" [autoClose]="false">
+    <input type="text" [textMask]="masks.date" class="form-control" value="{{selectedDate | date:'dd/MM/yyyy'}}">
+    <div class="input-group-addon calendar-point" dropdownToggle>
+        <span class="fa fa-calendar"></span>
+    </div>
+    <div *dropdownMenu class="dropdown-menu dropdown-date">
+        <datepicker (selectionDone)="selectionDone(container, $event)" [minDate]="minDate" [showWeeks]="true"></datepicker>
+    </div>
+</div>

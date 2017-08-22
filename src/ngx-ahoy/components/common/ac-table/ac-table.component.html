@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-sm-12">
+        &nbsp;
+    </div>
+</div>
+
+<!-- formulário -->
+<div class="row" *ngIf="config.hasSearch || config.hasCreate">
+    <div class="col-sm-12">
+        <div class="form-horizontal">
+            <div class="col-sm-6" *ngIf="config.hasSearch">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Consulta</label>
+                    <div class="input-group col-sm-10">
+                        <input type="text" class="form-control" (keyup.enter)="search()" [(ngModel)]="searchTerm">
+                        <span class="input-group-btn"> 
+                            <button type="button" class="btn btn-primary" (click)="search()"><i class="fa fa-search"></i> Buscar</button> 
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" *ngIf="config.hasCreate">
+                <button type="button" class="btn btn-primary btn-outline pull-right" (click)="add()"><i class="fa fa-plus-circle"></i> Novo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+
+<!-- tabela -->
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th *ngFor="let headerItem of config.columns">{{headerItem.Title}}</th>
+                    <th class="col-sm-1 text-center" *ngIf="config.hasEdit">Editar</th>
+                    <th class="col-sm-1 text-center" *ngIf="config.hasDelete">Remover</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="!emptyResult">
+                <tr *ngFor="let item of pagedItems">
+                    <td *ngFor="let column of config.columns">
+                        <label *ngIf="!column.Type">{{ item[column.Name]}}</label>
+                        <label *ngIf="column.Type == 1">{{ item[column.Name] | cpf }}</label>
+                        <label *ngIf="column.Type == 2">{{ item[column.Name] | cnpj }}</label>
+                        <label *ngIf="column.Type == 3">{{ item[column.Name] | date: 'dd/MM/yyyy' }}</label>
+                        <label *ngIf="column.Type == 4">{{ item[column.Name] | currencyLocal }}</label>
+                        <label *ngIf="column.Type == 5">{{ item[column.Name] | day }}</label>
+                    </td>
+                    <td class="col-sm-1 text-center" *ngIf="config.hasEdit">
+                        <button class="btn btn-success btn-circle btn-outline" type="button" (click)="edit(item)"><i class="fa fa-pencil"></i></button>
+                    </td>
+                    <td class="col-sm-1 text-center" *ngIf="config.hasDelete">
+                        <button class="btn btn-danger btn-circle btn-outline" type="button" (click)="remove(item)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row" *ngIf="emptyResult">
+    <div class="text-center">
+        <span>Nenhum resultado encontrado</span>
+    </div>
+</div>
+<div class="row" *ngIf="isSearching">
+    <div class="sk-loading text-center">
+        Carregando...
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+</div>
+
+<div class="hr-line-dashed"></div>
+
+<!-- paginador -->
+<div class="row">
+    <div class="text-center">
+        <ul *ngIf="pages && pages.length > 0" class="pagination">
+            <li [ngClass]="{disabled:currentPage === 1}">
+                <a (click)="setPage(1)">Primeira</a>
+            </li>
+            <li [ngClass]="{disabled:currentPage === 1}">
+                <a (click)="setPage(currentPage - 1)">Ant</a>
+            </li>
+            <li *ngFor="let page of pages" [ngClass]="{active:currentPage === page}">
+                <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:currentPage === totalPages}">
+                <a (click)="setPage(currentPage + 1)">Próx</a>
+            </li>
+            <li [ngClass]="{disabled:currentPage === totalPages}">
+                <a (click)="setPage(totalPages)">Última</a>
+            </li>
+        </ul>
+    </div>
+</div>

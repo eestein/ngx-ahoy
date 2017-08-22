@@ -1,0 +1,4 @@
+<button #button [ladda]="isLoading" [disabled]="isDisabled" (click)="onClick($event)" type="button" class="ladda-button {{classes}}">
+    <i *ngIf="iconClass" class="fa {{iconClass}}"></i>
+    {{ text }}
+</button>

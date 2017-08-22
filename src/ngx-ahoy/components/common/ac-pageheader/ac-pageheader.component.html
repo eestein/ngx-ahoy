@@ -1,0 +1,16 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{title}}</h2>
+        <ol class="breadcrumb">
+            <li *ngFor="let item of data; let idx = index" [ngClass]="{'active': data.length == i + 1}">
+                <span *ngIf="data.length > idx + 1; else lastComponent">{{item}}</span>
+                <ng-template #lastComponent>
+                    <strong>{{item}}</strong>
+                </ng-template>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>

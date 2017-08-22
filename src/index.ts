@@ -1,0 +1,1 @@
+export { NgxAhoyModule } from './ngx-ahoy/ngx-ahoy.module';
