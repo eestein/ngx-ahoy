@@ -43,11 +43,11 @@
                 <tr *ngFor="let item of pagedItems">
                     <td *ngFor="let column of config.columns">
                         <label *ngIf="!column.Type">{{ item[column.Name]}}</label>
-                        <label *ngIf="column.Type == 1">{{ item[column.Name] | cpf }}</label>
-                        <label *ngIf="column.Type == 2">{{ item[column.Name] | cnpj }}</label>
+                        <label *ngIf="column.Type == 1">{{ item[column.Name] | acCpf }}</label>
+                        <label *ngIf="column.Type == 2">{{ item[column.Name] | acCnpj }}</label>
                         <label *ngIf="column.Type == 3">{{ item[column.Name] | date: 'dd/MM/yyyy' }}</label>
-                        <label *ngIf="column.Type == 4">{{ item[column.Name] | currencyLocal }}</label>
-                        <label *ngIf="column.Type == 5">{{ item[column.Name] | day }}</label>
+                        <label *ngIf="column.Type == 4">{{ item[column.Name] | acCurrency }}</label>
+                        <label *ngIf="column.Type == 5">{{ item[column.Name] | acWeekday }}</label>
                     </td>
                     <td class="col-sm-1 text-center" *ngIf="config.hasEdit">
                         <button class="btn btn-success btn-circle btn-outline" type="button" (click)="edit(item)"><i class="fa fa-pencil"></i></button>

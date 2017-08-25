@@ -5,7 +5,6 @@ import { TokenResponseModel } from '../models/token-response.model';
 import { UrlParameterModel } from '../models/url-parameter.model';
 import { SecurityStorage } from '../storages/security.storage';
 import { AlertService } from './alert.service';
-import { environment } from '../../../environments/environment';
 import { Globals } from '../utils/globals';
 import { NgxAhoyConfigModel } from '../models/ngx-ahoy-config.model';
 

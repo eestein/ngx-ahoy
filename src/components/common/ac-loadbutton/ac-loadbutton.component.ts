@@ -4,8 +4,8 @@ import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'ac-load-button',
-    templateUrl: './ac-load-button.component.html',
-    styleUrls: ['./ac-load-button.component.css']
+    templateUrl: './ac-loadbutton.component.html',
+    styleUrls: ['./ac-loadbutton.component.css']
 })
 export class AcLoadbuttonComponent {
     @ViewChild('button') button: ElementRef;
